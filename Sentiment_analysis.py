@@ -55,6 +55,33 @@ def pred_text(text):
   return "Positive.😘" if predict == 1 else "Negative.🤬"
 
 
+from IPython.display import HTML
+
+def pred_text(text):
+  text=text.lower()
+  clean=preprocessing(text)
+  tr=vector.transform([clean])
+  pre_value=log.predict(tr)[0]
+
+  if pre_value == 1:
+    # Placeholder URL for a positive GIF
+    gif_url = "https://c.tenor.com/Im3n5AJvZ2wAAAAM/bobby-lashley-wrestlemania.gif"
+    sentiment_text = "positive"
+  else:
+    # Placeholder URL for a negative GIF
+    gif_url = "https://images.app.goo.gl/MxZ92Eo8QVPxkpvt5"
+    sentiment_text = "negative"
+
+  html_output = f"""
+  <div>
+    <p>Sentiment: {sentiment_text}</p>
+    <img src="{gif_url}" alt="{sentiment_text} GIF" style="width:300px;height:300px;">
+  </div>
+  """
+  return HTML(html_output)
+
+
+
 c = "I am bad"
 pred_text(c)
 
